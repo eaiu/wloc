@@ -498,6 +498,10 @@ queryActive();
     </div>`).join('')}
   </div>
 </section>
+<nav aria-label="快捷指令" style="padding:16px;text-align:center;line-height:2">
+  <a href="/shortcuts/WLOC-set-location-Cairlen.shortcut">设置位置快捷指令</a>
+  · <a href="/shortcuts/WLOC-restore-location-Cairlen.shortcut">恢复位置快捷指令</a>
+</nav>
 <footer style="padding:16px;text-align:center;font-size:13px;color:#666">
   WLOC 社区维护版 · <a href="${SOURCE_URL}" target="_blank" rel="noopener noreferrer">源码与许可证</a>
 </footer>
