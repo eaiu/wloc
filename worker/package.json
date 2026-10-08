@@ -2,12 +2,12 @@
   "type": "module",
   "scripts": {
     "test": "node --test test/*.test.mjs test/*.test.js",
-    "dev": "wrangler dev",
-    "deploy": "wrangler deploy --minify",
-    "build:check": "wrangler deploy --dry-run --outdir ../build/worker",
+    "dev": "wrangler dev -c wrangler.worker.jsonc",
+    "deploy": "wrangler deploy -c wrangler.worker.jsonc --minify",
+    "build:check": "wrangler deploy -c wrangler.worker.jsonc --dry-run --outdir ../build/worker",
     "pages:build": "wrangler pages functions build functions --outdir ../build/pages",
-    "pages:dev": "wrangler pages dev --port 8787 -c wrangler.pages.jsonc",
-    "pages:deploy": "wrangler pages deploy -c wrangler.pages.jsonc"
+    "pages:dev": "wrangler pages dev --port 8787",
+    "pages:deploy": "wrangler pages deploy"
   },
   "dependencies": {
     "hono": "4.13.13"

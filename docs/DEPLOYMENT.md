@@ -25,7 +25,7 @@ npx wrangler login
 npm run deploy
 ```
 
-`build:check` 是 dry-run，不上传或发布。`deploy` 会真正写入 Cloudflare。需要独立项目名时，修改 `wrangler.jsonc` 的 `name`，避免覆盖自己已有的同名 Worker。配置没有绑定 KV、数据库或账户 ID。
+`build:check` 是 dry-run，不上传或发布。`deploy` 会真正写入 Cloudflare。需要独立项目名时，修改 `wrangler.worker.jsonc` 的 `name`，避免覆盖自己已有的同名 Worker。配置没有绑定 KV、数据库或账户 ID。
 
 从部署输出取得站点 URL，填写根目录 `project.config.json` 的 `siteUrl`，重新生成并提交模块。发布源码应与线上运行版本一致；网页底部提供源码入口。若从发布 tag 部署，可将配置中的 `branch` 设为相应 tag 后生成。
 
@@ -39,9 +39,9 @@ npx wrangler login
 npm run pages:deploy
 ```
 
-`pages:build` 仅检查 Functions 打包，产物在仓库 `build/pages`。`pages:deploy` 使用 `wrangler.pages.jsonc` 以及 `worker/dist` 静态目录，并由 Wrangler 处理 `functions` 目录。首次使用时按提示选择或创建 Pages 项目。
+`pages:build` 仅检查 Functions 打包，产物在仓库 `build/pages`。`pages:deploy` 使用默认 `wrangler.jsonc` 以及 `worker/dist` 静态目录，并由 Wrangler 处理 `functions` 目录。Pages 不支持自定义配置文件路径。首次使用时按提示选择或创建 Pages 项目。
 
-同时修改项目名时也检查 `wrangler.pages.jsonc`；两个配置的 compatibility_date 保持一致。不要把两个配置的 name 当成域名。
+同时修改项目名时也检查 `wrangler.jsonc` 和 `wrangler.worker.jsonc`；两个配置的 compatibility_date 保持一致。不要把两个配置的 name 当成域名。
 
 ## 部署后检查
 
