@@ -34,7 +34,9 @@ https://wloc-cairlen.pages.dev/shortcuts/WLOC-restore-location-Cairlen.shortcut
 
 ## Cloudflare Pages 配置
 
-连接 `eaiu/wloc`，生产分支为 `main`：
+当前 `wloc-cairlen` 是通过 Wrangler 创建的 Direct Upload 项目，生产分支为 `main`。
+GitHub push 不会自动发布，更新后需要执行下方命令。
+如另外创建 Git 集成 Pages 项目，可连接 `eaiu/wloc` 并使用以下构建设置：
 
 - 根目录：`worker`
 - 构建命令：`npm ci`
@@ -43,6 +45,21 @@ https://wloc-cairlen.pages.dev/shortcuts/WLOC-restore-location-Cairlen.shortcut
 - 项目名：`wloc-cairlen`
 
 Pages 会同时编译 `worker/functions`。这不能部署为纯静态 GitHub Pages。
-命令行部署方式：在 `worker` 目录运行 `npx wrangler pages deploy --branch main`。
+命令行部署方式：
+
+```sh
+npm run configure
+npm run check:release
+npm test
+npm run pages:build
+cd worker
+npm run pages:deploy -- --branch main
+```
+
+若修改了 `siteUrl`，发布前还需要重新生成并签名快捷指令。
+Direct Upload 项目不能直接切换为 Git 集成；自动发布可另配 GitHub Actions。
+
+发布验证：28 项测试通过，Pages 与 Workers dry-run 构建成功，生产依赖审计无漏洞。
+开发工具依赖仍有 npm audit 高危报告，不要执行其建议的 Wrangler 强制降级。
 
 本定制不改变上游的 iOS 兼容性；部署成功不代表定位拦截在当前系统上一定有效。
